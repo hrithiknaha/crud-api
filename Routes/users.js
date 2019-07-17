@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const User = require('../models/Users');
+const passport = require('passport');
 
 
 //Register Route - To add users to database
@@ -8,23 +9,29 @@ router.post('/register', function(req, res){
     var password = req.body.password;
     const user = new User({
         username, 
-        password,
         date : Date.now()
     });
-    user.save(function(err, savedUser){
+    User.register(user, password, function(err, user){
         if(err)
-            return console.log('Error while saving to the database');
-        res.json(savedUser);
+            return console.log(err);
+        passport.authenticate("local")(req,res,function(){
+            res.json(req.user)
+        });
     })
+    
+    // user.save(function(err, savedUser){
+    //     if(err)
+    //         return console.log('Error while saving to the database');
+    //     res.json(savedUser);
+    // });
 });
 
 //Find all route - To get all users from Database
-router.get("/", function(req, res){
-    User.find(function(err, users){
-        if(err)
-            return console.log('Error while retreiveing users from Database');
-        res.json(users);
-    });
+router.post("/",passport.authenticate('local', {
+    successRedirect : "/loggedin",
+    failureRedirect : "/"
+}) ,function(req, res){
+    
 });
 
 //Find one route - To get one user from the Database

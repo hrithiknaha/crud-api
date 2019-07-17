@@ -1,10 +1,22 @@
 const router = require('express').Router();
 const User = require('../models/Users');
 const passport = require('passport');
+const Joi = require('@hapi/joi');
+
+//Validation Schema
+const ValidationSchema = {
+    username : Joi.string().min(5).max(30).required(),
+    password: Joi.string().regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/).required()
+}
 
 
 //Register Route - To add users to database
 router.post('/register', function(req, res){
+    //Validation
+    const { error } = Joi.validate(req.body, ValidationSchema);
+    if(error)
+        return res.json(error.details[0].message);
+    
     var username = req.body.username;
     var password = req.body.password;
     const user = new User({
@@ -13,7 +25,7 @@ router.post('/register', function(req, res){
     });
     User.register(user, password, function(err, user){
         if(err)
-            return console.log(err);
+            return res.json(err);
         passport.authenticate("local")(req,res,function(){
             res.json(req.user)
         });

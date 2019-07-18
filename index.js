@@ -17,11 +17,16 @@ mongoose.connect(process.env.MONGO_URI, {useNewUrlParser : true}, function(err){
 });
 
 //Middleware
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: false
+ }));
+app.set("view engine", "ejs");
+app.use(express.static(__dirname + "/public"));
 
 //Passport Session
 app.use(session({
-    secret: 'theGoatUpTheHill',
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false
 }));
@@ -34,6 +39,7 @@ passport.use(new localStrategy(User.authenticate()));
 
 //Routes
 app.use('/users', require('./Routes/users'));
+app.use('/', require('./Routes/home'));
 
 //Server Setup
 app.listen(process.env.PORT, function(){

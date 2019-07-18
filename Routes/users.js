@@ -41,7 +41,7 @@ router.post('/register', function(req, res){
 //Find all route - To get all users from Database
 router.post("/",passport.authenticate('local', {
     successRedirect : "/loggedin",
-    failureRedirect : "/"
+    failureRedirect : "/failed"
 }) ,function(req, res){
     
 });

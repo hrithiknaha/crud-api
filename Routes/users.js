@@ -11,40 +11,40 @@ const ValidationSchema = {
 
 
 //Register Route - To add users to database
-router.post('/register', function(req, res){
-    //Validation
-    const { error } = Joi.validate(req.body, ValidationSchema);
-    if(error)
-        return res.json(error.details[0].message);
+// router.post('/register', function(req, res){
+//     //Validation
+//     const { error } = Joi.validate(req.body, ValidationSchema);
+//     if(error)
+//         return res.json(error.details[0].message);
     
-    var username = req.body.username;
-    var password = req.body.password;
-    const user = new User({
-        username, 
-        date : Date.now()
-    });
-    User.register(user, password, function(err, user){
-        if(err)
-            return res.json(err);
-        passport.authenticate("local")(req,res,function(){
-            res.json(req.user)
-        });
-    })
+//     var username = req.body.username;
+//     var password = req.body.password;
+//     const user = new User({
+//         username, 
+//         date : Date.now()
+//     });
+//     User.register(user, password, function(err, user){
+//         if(err)
+//             return res.json(err);
+//         passport.authenticate("local")(req,res,function(){
+//             res.json(req.user)
+//         });
+//     })
     
-    // user.save(function(err, savedUser){
-    //     if(err)
-    //         return console.log('Error while saving to the database');
-    //     res.json(savedUser);
-    // });
-});
+//     // user.save(function(err, savedUser){
+//     //     if(err)
+//     //         return console.log('Error while saving to the database');
+//     //     res.json(savedUser);
+//     // });
+// });
 
 //Find all route - To get all users from Database
-router.post("/",passport.authenticate('local', {
-    successRedirect : "/loggedin",
-    failureRedirect : "/failed"
-}) ,function(req, res){
+// router.post("/",passport.authenticate('local', {
+//     successRedirect : "/home",
+//     failureRedirect : "/"
+// }) ,function(req, res){
     
-});
+// });
 
 //Find one route - To get one user from the Database
 router.get('/:id', function(req, res){

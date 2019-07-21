@@ -1,0 +1,52 @@
+<% include partials/header.ejs %>
+
+
+<div class="ui container"> 
+    <div class="profile">
+        <div class="grid">
+            <div class="left">
+                    <div class="profile-image">
+                            <img class="ui fluid image" src="https://source.unsplash.com/random">
+                    </div>
+                    
+                    <div class="ui header profile-name">
+                        <h2><%-user.name %></h2>
+                    </div>
+                
+                    <div class="ui profile-desc">
+                        <%-user.description %>
+                    </div>
+            </div>
+    
+            <div class="subgrid">
+                <div class="">
+                    <h3>Account Type</h3>
+                    <div class="ui large label teal profile-type"><h4><%-user.accountType %></h4></div>
+                </div>
+                <div class="">
+                    <h3>Department</h3>
+                    <div class="ui large label profile-stream"><h4><%-user.department %></h4></div>
+                </div>
+                <div class="">
+                    <h3>Graduation</h3>
+                    <div class="ui large label brown profile-grad-year"><h4><%-user.graduation %></h4></div>
+                </div>
+                <div class="four">
+                    <div class="ui profile-subjects">
+                        <h3>Favorites</h3>
+                        <div class="ui blue labels profile-subject__labels">
+                        <% for(i=0;i<user.subjects.length;i++){ %>
+                            <a class="ui label">
+                                    <%-user.subjects[i] %>
+                            </a>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<% include partials/footer.ejs %>

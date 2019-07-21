@@ -1,4 +1,70 @@
+.navbar{
+    height: 4rem;
+}
+
 .home__form{
     width: 50%;
     margin:15rem auto;
+}
+
+.profile{
+    margin-top: 3rem;
+}
+
+.profile-image{
+    max-height: 290px !important;
+    max-width: 290px;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 2rem;
+    margin: auto;
+}
+
+/* .profile-desc{
+    width: 290px;
+} */
+
+.grid{
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-gap: 1rem;
+}
+
+.subgrid{
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    grid-gap: 1rem;
+
+    justify-items: center;
+    align-items: center;
+    height: 80px;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.four{
+    grid-column: 1/4;
+    grid-row: 2;
+    width: 100%;
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.four span{
+    margin-bottom: 2rem;
+}
+
+.profile-subject__labels{
+    margin-top: 1rem;
+}
+
+.left{
+    text-align: center;
+    margin: auto;
+}
+
+.register-form{
+    width: 50%;
+    margin: 4rem auto;
 }

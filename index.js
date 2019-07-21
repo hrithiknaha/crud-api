@@ -38,7 +38,7 @@ passport.use(new localStrategy(User.authenticate()));
 
 
 //Routes
-app.use('/users', require('./Routes/users'));
+//app.use('/users', require('./Routes/users'));
 app.use('/', require('./Routes/home'));
 
 //Server Setup

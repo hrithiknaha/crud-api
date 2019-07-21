@@ -1,0 +1,67 @@
+<% include partials/header %>
+
+<div class="ui container">
+    <form class="ui form register-form" method="POST" action="/register">
+        <!-- Username
+        Password
+        Name
+        Description
+        Department - Array
+        Graduation
+        Subjects  - Array -->
+        <div class="ui form">
+            <div class="field ">
+                <label>Name</label>
+                <input placeholder="Name" type="text" name="name">
+              </div>
+           <div class="two fields">
+             <div class="field ">
+               <label>Username</label>
+               <input placeholder="Username" type="text" name="username">
+             </div>
+             <div class="field">
+               <label>Password</label>
+               <input placeholder="Password" type="Password" name="password">
+             </div>
+           </div>
+           <div class="field">
+              <label>Description</label>
+              <textarea placeholder="Write a thing about yourself" rows="2" name="description"></textarea>
+           </div>
+           <div class="field">
+              <label>Graduation</label>
+              <input placeholder="Graduation" type="number" name="graduation"></input>
+           </div>
+           <div class="field">
+              <label>Favorites</label>
+              <select multiple="" class="ui dropdown" name="favorites">
+                <option value="">Select Country</option>
+                <option value="Software Engineering">Software Engineering</option>
+                <option value="Database Management">Database Management</option>
+                <option value="Computer Networks">Computer Networks</option>
+              </select>
+            </div>
+           <div class="field ">
+             <label>Department</label>
+             <div class="ui selection dropdown">
+               <div class="default text">Select</div>
+               <i class="dropdown icon"></i>
+               <input type="hidden" name="department">
+               <div class="menu">
+                 <div class="item" data-value="Computer Science and Engineering">Computer Science and Engineering</div>
+                 <div class="item" data-value="Electronics and Communication">Electronic and Communication</div>
+                 <div class="item" data-value="Mechanical Engineering">Mechanical Engineering</div>
+                 <div class="item" data-value="Electrical Engineering">Electrical Engineering</div>
+               </div>
+             </div>
+           </div>
+           <button class="ui button" type="submit">Submit</button>
+         </div>
+         
+        
+   </form>
+</div>
+
+
+
+<% include partials/footer %>

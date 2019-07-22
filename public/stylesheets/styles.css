@@ -68,3 +68,18 @@
     width: 50%;
     margin: 4rem auto;
 }
+
+.jumbrotron{
+    margin: 0 !important;
+}
+
+.button-segment{
+    width: 25%;
+    margin: 1rem auto !important;
+    text-align: center;
+}
+
+.button-url{
+    all: unset;
+}
+

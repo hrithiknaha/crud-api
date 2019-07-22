@@ -2,21 +2,20 @@ const router = require('express').Router();
 const User = require('../models/Users');
 const passport = require('passport');
 
-router.get('/', function(req, res){
+router.get('/', function(req,res){
     res.render('home');
 })
 
-// router.post("/",passport.authenticate('local', {
-//     successRedirect : "/home/",
-//     failureRedirect : "/"
-// }) ,function(req, res){   
-// });
+router.get('/login', function(req, res){
+    res.render('login');
+})
 
-router.post('/',
-  passport.authenticate('local'),
-  function(req, res) {
-    res.redirect('/user/' + req.user.username);
-  });
+router.post("/login/user",passport.authenticate('local', {
+    failureRedirect : "/login"
+}) ,function(req, res){ 
+    res.redirect('/user/' + req.user.username); 
+});
+
 
 router.get('/user/:username', function(req,res){
     User.findOne({username : req.params.username}, function(err, user){
@@ -60,14 +59,6 @@ router.post('/register', function(req,res){
             res.redirect('')
         });
     })
-    // console.log(req.body)
-    // console.log(`${name}`);
-    // console.log(`${username}`);
-    // console.log(`${password}`);
-    // console.log(`${description}`);
-    // console.log(`${graduation}`);
-    // console.log(`${favorites}`);
-    // console.log(`${department}`);
 })
 
 module.exports = router;
